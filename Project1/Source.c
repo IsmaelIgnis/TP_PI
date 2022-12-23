@@ -4,14 +4,14 @@ void menu() {
 
     int opcao;
 
-    printf("Bem-vindo.\t Que operacao deseja realizar?\n");
+    printf("Bem-vindo. Que operacao deseja realizar?\n");
     printf(" \n");
     printf("1 - Registar um novo usuario.\n");
     printf("2 - Registar uma nova atividade.\n");
     printf("3 - Ver as atividades planeadas.\n");
     printf("4 - Seguidores.\n");
     printf("5 - Outros.\n");
-    printf("6 - Histórico de informação introduzida.\n");
+    printf("6 - Historico de informacao introduzida.\n");
 
 
 
@@ -50,7 +50,3 @@ Ou seja, "Participantes" e "Atividades"
 
 */
 
-void main()
-{
-    menu();
-}
