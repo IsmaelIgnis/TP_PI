@@ -14,7 +14,7 @@ void menu() {
     printf("6 - Historico de informacao introduzida.\n");
 
 
-
+    printf("ola");
 
 }
 
@@ -49,4 +49,6 @@ Opção 6 - Função que apanhe toda a informação inserida pelo utilizador, ta
 Ou seja, "Participantes" e "Atividades"
 
 */
+
+
 
