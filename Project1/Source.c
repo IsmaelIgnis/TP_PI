@@ -5,7 +5,7 @@ void menu() {
     int opcao;
 
     printf("Bem-vindo. Que operacao deseja realizar?\n");
-    printf(" \n");
+    printf("            \n");
     printf("1 - Registar um novo usuario.\n");
     printf("2 - Registar uma nova atividade.\n");
     printf("3 - Ver as atividades planeadas.\n");
