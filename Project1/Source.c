@@ -1,4 +1,111 @@
-#include<stdio.h>
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+
+
+typedef struct dadosParticipante {
+    char nome[70]; 
+    int numPraticante; 
+    int idade; 
+    int telefone; 
+} Dados;
+
+
+typedef struct atividades {
+
+    int numPraticante;
+    char data[10]; 
+    char nomeAtividade[50]; 
+    char hora[10]; 
+    int tempoDeDuracao; 
+    int distancia; 
+    char unidadesDeMedida[20]; 
+
+}Atividades;
+
+typedef struct planos {
+
+    int numPraticante; 
+    char dataInicio[20]; 
+    char dataFinal[20]; 
+    char horaDeInicio[10];
+    char horaDeFim[10];
+    char nomeAtividade[100]; 
+    int distanciaRealizada; 
+    char unidadesDeMedida[20];
+
+}Planos;
+
+
+//LER DADOS (ficheiro Dados.txt)
+int LerDadosDeParticipante(Dados pessoas[]) {
+    FILE* fp;
+    int i;
+
+    fp = fopen("Dados.txt", "r");
+    if (fp != NULL) {
+        for (i = 0; !feof(fp); i++) {
+            fscanf(fp, "%d;%[^;];%d;%d\n", &pessoas[i].numPraticante, pessoas[i].nome, &pessoas[i].telefone, &pessoas[i].idade);
+        }
+        fclose(fp);
+        return i;
+    }
+    else {
+        printf("Erro ao abrir o ficheiro\n");
+        return -1;
+    }
+}
+
+int LerAtividades(Atividades atividades[]) {
+
+    FILE* fp1;
+    int i;
+
+    fp1 = fopen("Atividades.txt", "r");
+    if (fp1 != NULL) {                       
+        for (i = 0; !feof(fp1); i++) {
+            fscanf(fp1, "%d;%[^;];%[^;];%[^;];%d;%d;%s\n", &atividades[i].numPraticante, atividades[i].data,
+                atividades[i].hora, atividades[i].nomeAtividade,
+                &atividades[i].tempoDeDuracao, &atividades[i].distancia, atividades[i].unidadesDeMedida);
+        }
+        fclose(fp1);
+        return i;
+    }
+    else {
+        printf("Erro ao abrir o ficheiro\n");
+        return -1;
+    }
+}
+
+
+int LerPlanos(Planos atividades[]) {
+
+    FILE* fp2;
+    int i;
+
+    fp2 = fopen("Planos.txt", "r");
+    if (fp2 != NULL) {
+        for (i = 0; !feof(fp2); i++) {
+            fscanf(fp2, "%d;%[^;];%[^;];%[^;];%[^;];%[^;];%d;%[^;]\n", &atividades[i].numPraticante, atividades[i].dataInicio,
+                atividades[i].dataFinal, &atividades[i].horaDeInicio, &atividades[i].horaDeFim, atividades[i].nomeAtividade,
+                &atividades[i].distanciaRealizada, atividades[i].unidadesDeMedida);
+        }
+        fclose(fp2);
+        return i;
+    }
+    else {
+        printf("Erro ao abrir o ficheiro\n");
+        return -1;
+    }
+
+
+
+
+
+
+}
 
 void menu() {
 
@@ -22,18 +129,18 @@ void menu() {
 
 void main() {
 
-    menu();
+   
 
 }
 
 /*anotações tiradas enquanto fui fazendo o menu:
 
 Opção 1 do menu: Ter uma função para fazer as informações que vão ser necessárias para serem impressas
-no ficheiro 1 que o prof pede.
+no ficheiro 1 que o prof pede. (feito)
 
 Opção 2 - Ao registar a atividade, rgegistá-la num tipo de histórico (necessário uma função para isso)
-para depois só imprimir no segundo ficheiro que o professor pede. Também fazer uma função para dar origem
-às informações do ficheiro 3.
+para depois só imprimir no segundo ficheiro que o professor pede. (feito) Também fazer uma função para dar origem
+às informações do ficheiro 3. (feito)
 
 
 Opção 3 - Ter a função com o calendário, para os pontos 4, 5, 6 e tudo o qiue inclua o utilizador ter de
@@ -49,6 +156,8 @@ Opção 6 - Função que apanhe toda a informação inserida pelo utilizador, ta
 Ou seja, "Participantes" e "Atividades"
 
 */
+
+
 
 
 
