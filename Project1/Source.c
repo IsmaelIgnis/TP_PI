@@ -58,90 +58,90 @@ int lerDadosDeParticipante(Dados pessoas[]) {
     }
 }
 
-//int lerAtividades(Atividades atividades[]) {
-//
-//    FILE* fp1;
-//    int i;
-//
-//    fp1 = fopen("Atividades.txt", "r");
-//    if (fp1 != NULL) {
-//        for (i = 0; !feof(fp1); i++) {
-//            fscanf(fp1, "%d;%[^;];%[^;];%[^;];%d;%d;%s\n", &atividades[i].numPraticante, atividades[i].data,
-//                atividades[i].hora, atividades[i].nomeAtividade,
-//                &atividades[i].tempoDeDuracao, &atividades[i].distancia, atividades[i].unidadesDeMedida);
-//        }
-//        fclose(fp1);
-//        return i;
-//    }
-//    else {
-//        printf("Erro ao abrir o ficheiro\n");
-//        return -1;
-//    }
-//}
-//
-//
-//int lerPlanos(Planos atividades[]) {
-//
-//    FILE* fp2;
-//    int i;
-//
-//    fp2 = fopen("Planos.txt", "r");
-//    if (fp2 != NULL) {
-//        for (i = 0; !feof(fp2); i++) {
-//            fscanf(fp2, "%d;%[^;];%[^;];%[^;];%[^;];%[^;];%d;%[^;]\n", &atividades[i].numPraticante, atividades[i].dataInicio,
-//                atividades[i].dataFinal, &atividades[i].horaDeInicio, &atividades[i].horaDeFim, atividades[i].nomeAtividade,
-//                &atividades[i].distanciaRealizada, atividades[i].unidadesDeMedida);
-//        }
-//        fclose(fp2);
-//        return i;
-//    }
-//    else {
-//        printf("Erro ao abrir o ficheiro\n");
-//        return -1;
-//    }
-//
-//}
-//
-//int historicoAtividade()
-//{
-//    Dados people[100];
-//    Atividades activities[100];
-//    Planos data[100];
-//
-//    read_file("dados_praticantes.txt", "Dados", people, 100);
-//    read_file("ativ_praticantes.txt", "Atividades", activities, 100);
-//    read_file("dp_praticantes.txt", "Plantos", data, 100);
-//
-//    char nomeAtividade[100];
-//    char dataInicio[11];
-//    char dataFinal[11];
-//    printf("Insere o nome da atividade: ");
-//    gets(nomeAtividade[100]);
-//    printf("Insere a data de inicio (DD-MM-YYYY): ");
-//    gets(dataInicio[11]);
-//    printf("Insere a data de fim (DD-MM-YYY): ");
-//    gets(dataFinal[11]);
-//
-//
-//    int num_participants = 0;
-//    for (int i = 0; i < 100; i++) {
-//        if (strcmp(activities[i].nomeAtividade, nomeAtividade) == 0) {
-//            if (strcmp(data[i].dataInicio, dataInicio) >= 0 && strcmp(data[i].dataFinal, dataFinal) <= 0) {
-//                num_participants++;
-//            }
-//        }
-//    }
-//
-//
-//    printf("Number of participants in %s from %s to %s: %d\n", nomeAtividade, dataInicio, dataFinal, num_participants);
-//
-//    return 0;
-//
-//
-//}
+int lerAtividades(Atividades atividades[]) {
+
+    FILE* fp1;
+    int i;
+
+    fp1 = fopen("Atividades.txt", "r");
+    if (fp1 != NULL) {
+        for (i = 0; !feof(fp1); i++) {
+            fscanf(fp1, "%d;%[^;];%[^;];%[^;];%d;%d;%s\n", &atividades[i].numPraticante, atividades[i].data,
+                atividades[i].hora, atividades[i].nomeAtividade,
+                &atividades[i].tempoDeDuracao, &atividades[i].distancia, atividades[i].unidadesDeMedida);
+        }
+        fclose(fp1);
+        return i;
+    }
+    else {
+        printf("Erro ao abrir o ficheiro\n");
+        return -1;
+    }
+}
 
 
-void menu() {
+int lerPlanos(Planos atividades[]) {
+
+    FILE* fp2;
+    int i;
+
+    fp2 = fopen("Planos.txt", "r");
+    if (fp2 != NULL) {
+        for (i = 0; !feof(fp2); i++) {
+            fscanf(fp2, "%d;%[^;];%[^;];%[^;];%[^;];%[^;];%d;%[^;]\n", &atividades[i].numPraticante, atividades[i].dataInicio,
+                atividades[i].dataFinal, &atividades[i].horaDeInicio, &atividades[i].horaDeFim, atividades[i].nomeAtividade,
+                &atividades[i].distanciaRealizada, atividades[i].unidadesDeMedida);
+        }
+        fclose(fp2);
+        return i;
+    }
+    else {
+        printf("Erro ao abrir o ficheiro\n");
+        return -1;
+    }
+
+}
+
+int ex4()
+{
+    Dados people[100];
+    Atividades activities[100];
+    Planos data[100];
+
+    read_file("dados_praticantes.txt", "Dados", people, 100);
+    read_file("ativ_praticantes.txt", "Atividades", activities, 100);
+    read_file("dp_praticantes.txt", "Plantos", data, 100);
+
+    char nomeAtividade[100];
+    char dataInicio[11];
+    char dataFinal[11];
+    printf("Insere o nome da atividade: ");
+    gets(nomeAtividade[100]);
+    printf("Insere a data de inicio (DD-MM-YYYY): ");
+    gets(dataInicio[11]);
+    printf("Insere a data de fim (DD-MM-YYY): ");
+    gets(dataFinal[11]);
+
+
+    int num_participants = 0;
+    for (int i = 0; i < 100; i++) {
+        if (strcmp(activities[i].nomeAtividade, nomeAtividade) == 0) {
+            if (strcmp(data[i].dataInicio, dataInicio) >= 0 && strcmp(data[i].dataFinal, dataFinal) <= 0) {
+                num_participants++;
+            }
+        }
+    }
+
+
+    printf("Number of participants in %s from %s to %s: %d\n", nomeAtividade, dataInicio, dataFinal, num_participants);
+
+    return 0;
+
+
+}
+
+
+void main() {
 
     int input;
 
@@ -153,33 +153,34 @@ void menu() {
     printf("4 - Seguidores.\n");
     printf("5 - Outros.\n");
     printf("6 - Historico de informacao introduzida.\n");
+    printf("0 - Sair.");
 
 
     scanf("%d", &input);
      if (input == 0)
     {
-        return 0;  //Program will be terminated if 0 is pressed
+        return 0;
     }
     switch (input)
     {
     case 1:
         if (input == 1)
         {
-            lerDadosDeParticipante(500);
+           ;
         }
         break;
-    //case 2:
-    //    if (input == 2)
-    //    {
-    //        payment();
-    //    }
-    //    break;
-    //case 3:
-    //    if (input == 3)
-    //    {
-    //        customer();
-    //    }
-    //    break;
+    case 2:
+        if (input == 2)
+        {
+           ;
+        }
+        break;
+    case 3:
+        if (input == 3)
+        {
+            ;
+        }
+        break;
 
     default:
         printf("Enter a valid number");
@@ -190,11 +191,7 @@ void menu() {
 
 
 
-void main() {
 
-    menu();
-
-}
 
 /*anotações tiradas enquanto fui fazendo o menu:
 Opção 1 do menu: Ter uma função para fazer as informações que vão ser necessárias para serem impressas
