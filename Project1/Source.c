@@ -39,7 +39,6 @@ typedef struct planos {
 }Planos;
 
 
-//LER DADOS (ficheiro Dados.txt)
 int lerDadosDeParticipante(Dados pessoas[]) {
     FILE* fp;
     int i;
