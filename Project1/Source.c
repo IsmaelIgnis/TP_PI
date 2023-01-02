@@ -38,8 +38,10 @@ typedef struct planos {
 
 }Planos;
 
-
+//LER DADOS (ficheiro Dados.txt)
 int lerDadosDeParticipante(Dados pessoas[]) {
+    
+
     FILE* fp;
     int i;
 
@@ -139,6 +141,232 @@ int ex4()
 
 }
 
+int ex5() {
+
+    Dados people[100];
+    Atividades activities[100];
+    Planos data[100];
+
+
+    read_file("dados_praticantes.txt", "Dados", people, 100);
+    read_file("ativ_praticantes.txt", "Atividades", activities, 100);
+    read_file("dp_praticantes.txt", "Plantos", data, 100);
+
+    char nomeAtividade[100];
+    char dataInicio[11];
+    char dataFinal[11];
+    printf("Insere o nome da atividade: ");
+    gets(nomeAtividade[100]);
+    printf("Insere a data de inicio (DD-MM-YYYY): ");
+    gets(dataInicio[11]);
+    printf("Insere a data de fim (DD-MM-YYY): ");
+    gets(dataFinal[11]);
+
+    int i, j;
+
+    for (i = 0; i <= 100; i++) {
+
+
+        if (strcmp(activities[i].nomeAtividade, nomeAtividade) == 0) {
+            if (strcmp(data[i].dataInicio, dataInicio) >= 0 && strcmp(data[i].dataFinal, dataFinal) <= 0) {
+
+                for (j = 100; j > 0; j--) {
+
+
+                    printf("\nNumero do participante: %s\n Praticou essa atividade %s de %s a %s ", activities[i].numPraticante, dataInicio, dataFinal);
+
+
+                }
+
+
+
+
+            }
+        }
+
+    }
+
+
+
+}
+
+int ex6() {
+
+    Dados people[100];
+    Atividades activities[100];
+    Planos data[100];
+
+
+    read_file("dados_praticantes.txt", "Dados", people, 100);
+    read_file("ativ_praticantes.txt", "Atividades", activities, 100);
+    read_file("dp_praticantes.txt", "Plantos", data, 100);
+
+    char numParticipante[100];
+    char dataInicio[11];
+    char dataFinal[11];
+
+    printf("Insere o numero de participante: ");
+    gets(numParticipante[100]);
+    printf("Insere a data de inicio (DD-MM-YYYY): ");
+    gets(dataInicio[11]);
+    printf("Insere a data de fim (DD-MM-YYY): ");
+    gets(dataFinal[11]);
+
+    int i;
+
+    for (i = 0; i <= 100; i++) {
+
+
+        if (strcmp(activities[i].numPraticante, numParticipante) == 0) {
+            if (strcmp(data[i].dataInicio, dataInicio) >= 0 && strcmp(data[i].dataFinal, dataFinal) <= 0) {
+
+                printf("O plano de atividades do praticante %d de %s a %s e:\n", activities[i].numPraticante, dataInicio, dataFinal);
+
+
+                printf("");
+            }
+        }
+
+    }
+
+
+
+
+}
+
+Dados Registo() {
+
+    int i = 1;
+    Dados P;
+
+    printf("Insira o seu ursername.\n");
+    fgets(P.nome, 70, stdin);
+    printf("Insira a sua idade.\n");
+    scanf("%d", &P.idade);
+    printf("Insira o seu telefone.\n");
+    scanf("%d", &P.telefone);
+
+
+    return P;
+
+    i++;
+}
+
+
+void CriarNovoUsuario() {
+
+
+    Dados pessoas[100];
+
+    int i = 1;
+
+    pessoas[i] = Registo();
+
+
+    i++;
+
+    FILE* fp;
+
+
+    fp = fopen("Dados.txt", "a");
+    if (fp != NULL) {
+
+
+
+        fprintf(fp, "%d;%s;%d;%d\n\n\n", pessoas[1].numPraticante, pessoas[1].nome, pessoas[1].idade, pessoas[1].telefone);
+
+
+
+        fclose(fp);
+        return i;
+    }
+    else {
+
+        printf("Erro a abrir ficheiro;");
+
+
+    }
+
+
+
+}
+
+Atividades RegistoAtividade() {
+
+    int i = 1;
+    Atividades P;
+
+    printf("Insira o seu ursername.\n");
+    fgets(P.nomePraticante, 50, stdin);
+    printf("Insira a data em que realiou a atividade em formato DD-MM-AAAA.\n");
+    fgets(P.data, 10, stdin);
+    printf("Insira a hora em que realizou a atividade em formato HH:MM.\n");
+    fgets(P.hora, 10, stdin);
+    printf("Insira o nome da atividade.\n");
+    fgets(P.nomeAtividade, 10, stdin);
+    printf("Insira a distancia.\n");
+    scanf("%d", &P.distancia);
+    printf("Insira as unidades de medida.\n");
+    fgets(P.unidadesDeMedida, 10, stdin);
+
+    return P;
+
+    i++;
+}
+
+
+void CriarNovaAtividade() {
+
+
+    Atividades atividades[100];
+
+    int i = 1;
+
+    atividades[i] = RegistoAtividade();
+
+
+    i++;
+
+    FILE* fp3;
+
+
+    fp3 = fopen("Atividades.txt", "a");
+    if (fp3 != NULL) {
+
+
+
+        fprintf(fp3, "%s;%s;%s;%s;%d,%s\n\n\n", atividades[1].nomePraticante, atividades[1].data, atividades[1].hora, atividades[1].nomeAtividade, atividades[1].distancia, atividades[1].unidadesDeMedida);
+
+
+        fclose(fp3);
+        return i;
+    }
+    else {
+
+        FILE* fp2;
+
+
+        fp2 = fopen("Atividades.txt", "w");
+        if (fp2 != NULL) {
+
+            fprintf(fp2, "%s;%s;%s;%s;%d,%s\n\n\n", atividades[1].nomePraticante, atividades[1].data, atividades[1].hora, atividades[1].nomeAtividade, atividades[1].distancia, atividades[1].unidadesDeMedida);
+
+
+            fclose(fp2);
+            return i;
+        }
+        else {
+
+            printf("Erro a criar ficheiro");
+
+        }
+
+
+    }
+
+
+
+}
 
 void main() {
 
@@ -152,7 +380,7 @@ void main() {
     printf("4 - Seguidores.\n");
     printf("5 - Outros.\n");
     printf("6 - Historico de informacao introduzida.\n");
-    printf("0 - Sair.");
+    printf("0 - Sair.\n");
 
 
     scanf("%d", &input);
@@ -180,6 +408,25 @@ void main() {
             ;
         }
         break;
+    case 4:
+        if (input == 3)
+        {
+            ;
+        }
+        break;
+    case 5:
+        if (input == 3)
+        {
+            ;
+        }
+        break;
+    case 6:
+        if (input == 3)
+        {
+            ;
+        }
+        break;
+
 
     default:
         printf("Enter a valid number");
