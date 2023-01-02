@@ -59,6 +59,8 @@ int lerDadosDeParticipante(Dados pessoas[]) {
     }
 }
 
+
+
 int lerAtividades(Atividades atividades[]) {
 
     FILE* fp1;
@@ -79,6 +81,7 @@ int lerAtividades(Atividades atividades[]) {
         return -1;
     }
 }
+
 
 
 int lerPlanos(Planos atividades[]) {
@@ -102,6 +105,8 @@ int lerPlanos(Planos atividades[]) {
     }
 
 }
+
+
 
 int ex4()
 {
@@ -140,6 +145,8 @@ int ex4()
 
 
 }
+
+
 
 int ex5() {
 
@@ -190,49 +197,7 @@ int ex5() {
 
 }
 
-int ex6() {
 
-    Dados people[100];
-    Atividades activities[100];
-    Planos data[100];
-
-
-    read_file("dados_praticantes.txt", "Dados", people, 100);
-    read_file("ativ_praticantes.txt", "Atividades", activities, 100);
-    read_file("dp_praticantes.txt", "Plantos", data, 100);
-
-    char numParticipante[100];
-    char dataInicio[11];
-    char dataFinal[11];
-
-    printf("Insere o numero de participante: ");
-    gets(numParticipante[100]);
-    printf("Insere a data de inicio (DD-MM-YYYY): ");
-    gets(dataInicio[11]);
-    printf("Insere a data de fim (DD-MM-YYY): ");
-    gets(dataFinal[11]);
-
-    int i;
-
-    for (i = 0; i <= 100; i++) {
-
-
-        if (strcmp(activities[i].numPraticante, numParticipante) == 0) {
-            if (strcmp(data[i].dataInicio, dataInicio) >= 0 && strcmp(data[i].dataFinal, dataFinal) <= 0) {
-
-                printf("O plano de atividades do praticante %d de %s a %s e:\n", activities[i].numPraticante, dataInicio, dataFinal);
-
-
-                printf("");
-            }
-        }
-
-    }
-
-
-
-
-}
 
 Dados Registo() {
 
@@ -251,6 +216,7 @@ Dados Registo() {
 
     i++;
 }
+
 
 
 void CriarNovoUsuario() {
@@ -291,6 +257,8 @@ void CriarNovoUsuario() {
 
 }
 
+
+
 Atividades RegistoAtividade() {
 
     int i = 1;
@@ -313,6 +281,7 @@ Atividades RegistoAtividade() {
 
     i++;
 }
+
 
 
 void CriarNovaAtividade() {
@@ -367,6 +336,317 @@ void CriarNovaAtividade() {
 
 
 }
+
+
+
+Planos RegistoPlanos() {
+
+    int i = 1;
+    Planos P;
+
+    printf("Insira o seu ursername.\n");
+    fgets(P.nomePraticante, 50, stdin);
+    printf("Insira a data incial em que planeia realizar a atividade em formato DD-MM-AAAA.\n");
+    fgets(P.dataInicio, 10, stdin);
+    printf("Insira a hora em que planeia realizar a atividade em formato HH:MM.\n");
+    fgets(P.horaDeInicio, 10, stdin);
+    printf("Insira a data final em que planeia realizar a atividade em formato DD-MM-AAAA.\n");
+    fgets(P.dataFinal, 10, stdin);
+    printf("Insira a hora em que planeia acabar de realizar a atividade em formato HH:MM.\n");
+    fgets(P.horaDeFim, 10, stdin);
+    printf("Insira o nome da atividade.\n");
+    fgets(P.nomeAtividade, 10, stdin);
+    printf("Insira a distancia realizada.\n");
+    scanf("%d", &P.distanciaRealizada);
+    printf("Insira as unidades de medida.\n");
+    fgets(P.unidadesDeMedida, 10, stdin);
+
+    return P;
+
+    i++;
+}
+
+
+
+void CriarNovoPlano() {
+
+
+    Planos planos[100];
+
+    int i = 1;
+
+    planos[i] = RegistoPlanos();
+
+
+    i++;
+
+    FILE* fp4;
+
+
+    fp4 = fopen("Planos.txt", "a");
+    if (fp4 != NULL) {
+
+
+
+        fprintf(fp4, "%s;%s;%s;%s;%s;%s;%d,%s\n\n\n", planos[1].nomePraticante, planos[1].dataInicio, planos[1].horaDeInicio, planos[1].dataFinal, planos[1].horaDeFim, planos[1].nomeAtividade, planos[1].distanciaRealizada, planos[1].unidadesDeMedida);
+
+
+        fclose(fp4);
+        return i;
+    }
+    else {
+
+        FILE* fp4;
+
+
+        fp4 = fopen("Planos.txt", "w");
+        if (fp4 != NULL) {
+
+            fprintf(fp4, "%s;%s;%s;%s;%s;%s;%d,%s\n\n\n", planos[1].nomePraticante, planos[1].dataInicio, planos[1].horaDeInicio, planos[1].dataFinal, planos[1].horaDeFim, planos[1].nomeAtividade, planos[1].distanciaRealizada, planos[1].unidadesDeMedida);
+
+
+            fclose(fp4);
+            return i;
+        }
+        else {
+
+            printf("Erro a criar ficheiro");
+
+        }
+
+
+    }
+
+
+
+}
+
+
+
+int ex6() {
+
+    Dados people[100];
+    Atividades activities[100];
+    Planos data[100];
+
+
+    read_file("dados_praticantes.txt", "Dados", people, 100);
+    read_file("ativ_praticantes.txt", "Atividades", activities, 100);
+    read_file("dp_praticantes.txt", "Plantos", data, 100);
+
+    char numParticipante[100];
+    char dataInicio[11];
+    char dataFinal[11];
+
+    printf("Insere o numero de participante: ");
+    gets(numParticipante[100]);
+    printf("Insere a data de inicio (DD-MM-YYYY): ");
+    gets(dataInicio[11]);
+    printf("Insere a data de fim (DD-MM-YYY): ");
+    gets(dataFinal[11]);
+
+    int i;
+
+    for (i = 0; i <= 100; i++) {
+
+
+        if (strcmp(activities[i].numPraticante, numParticipante) == 0) {
+            if (strcmp(data[i].dataInicio, dataInicio) >= 0 && strcmp(data[i].dataFinal, dataFinal) <= 0) {
+
+                printf("O plano de atividades do praticante %d de %s a %s e:\n", activities[i].numPraticante, dataInicio, dataFinal);
+
+
+                printf("");
+            }
+        }
+
+    }
+
+
+
+
+}
+
+
+
+Atividades ex7() {
+
+    Atividades atividades[10];
+
+
+    char dataInicio[20], dataFinal[20], nomePraticante[30];
+
+    int i, k = 0, j, tempoTotal = 0, aux[10];
+
+    for (int i = 0; i < 10; i++) {
+
+        aux[i] = 0;
+
+    }
+
+    printf("Introduza o nome do participante: ");
+    scanf("%s", &nomePraticante);
+    printf("Introduza a data de inicio (DD-MM-AAAA): ");
+    scanf("%s", dataInicio);
+    printf("Introduza a data final (DD-MM-AAAA): ");
+    scanf("%s", dataFinal);
+
+
+
+    for (i = 0; i < 10; i++) {
+        if (nomePraticante == atividades[i].nomePraticante) {
+            if (strcmp(atividades[i].data, dataInicio) >= 0 && strcmp(atividades[i].data, dataFinal) <= 0 && aux[i] == 0) {
+                aux[i] = 1;
+                tempoTotal += atividades[i].tempoDeDuracao;
+                k++;
+                for (j = i + 1; j < 10; j++) {
+                    if (strcmp(atividades[i].data, dataInicio) >= 0 && strcmp(atividades[i].data, dataFinal) <= 0 && atividades[j].nomePraticante == nomePraticante
+                        && !strcmp(atividades[i].nomeAtividade, atividades[j].nomeAtividade) && aux[j] == 0) {
+                        aux[j] = 1;
+                        tempoTotal += atividades[j].tempoDeDuracao;
+                        k++;
+                    }
+                }
+            }
+        }
+        if (atividades[i].nomePraticante == nomePraticante && tempoTotal > 0)
+            printf("Username: %d\tAtividade: %s\tTempos Totais: %d\tMedia dos Tempos: %d\n", atividades[i].nomePraticante, atividades[i].nomeAtividade, tempoTotal, tempoTotal / k);
+    }
+}
+
+
+
+void ex8(Atividades atividades[], Planos planos[], Dados pessoas[]) {
+    int num = LerDadosDeParticipante(pessoas);
+    int num1 = LerAtividades(atividades) + LerPlanos(planos);
+    int i, j;
+
+
+    for (i = 0; i < num; i++) {
+        printf("%d\t%s\n", pessoas[i].numero, pessoas[i].nome);
+        for (j = 0; j < num; j++) {
+            printf("%s\n", planos[pessoas[i].numero - 1].nomeAtividade);
+        }
+    }
+}
+
+
+
+typedef struct Seguidores {
+
+    char nome[70];
+
+} seguidores;
+
+
+
+seguidores Seguir() {
+
+    Dados dados[100];
+    char NomeUtilizador[50];
+    char NomePessoa[50];
+
+    int i, j;
+
+
+    printf("Insere o nome da pessoa que queres seguir");
+    gets(NomePessoa[50]);
+
+    for (i = 0; i < 100; i++) {
+
+        if (strcmp(NomePessoa, pessoas[i].nome) == 0) {
+
+            for (j = 0; j < 100, j++;) {
+
+                if (!(strcmp(NomePessoa, dados->seguidores[i].nome) == 0)) {
+
+
+                    dados->seguidores[i].nome = NomePessoa;
+
+                    return NomePessoa;
+
+                }
+                else {
+
+
+                    printf("Ja segues essa pessoa.");
+
+                }
+            }
+        }
+    }
+
+    FILE* fp6;
+    int i;
+
+    fp6 = fopen("ASeguir.txt", "a");
+    if (fp6 != NULL) {
+
+
+        fprintf(fp6, "%s\n", seguidor);
+
+
+
+        fclose(fp6);
+
+
+    }
+    else {
+
+        fp6 = fopen("ASeguir.txt", "w");
+
+        if (fp6 != NULL) {
+
+
+            fprintf(fp6, "%s\n", seguidor);
+
+
+
+            fclose(fp6);
+
+
+        }
+        else {
+
+            printf("Erro ao criar o ficheiro\n");
+
+        }
+    }
+
+
+
+}
+
+
+
+void ex10() {
+
+
+    Atividades atividades[100];
+
+    char seguidor[100];
+    int i, tempoMaior = 0;
+
+    printf("Introduza o nome do participante: ");
+    scanf("%s", &dados.nome);
+
+    for (i = 0; i < 100; i++) {
+
+        if (strcmp(seguidor, atividades[i].nomePraticante) == 0) {
+
+            if (atividades[i].tempoDeDuracao > tempoMaior) {
+
+                tempoMaior = atividades->tempoDeDuracao;
+
+
+            }
+
+        }
+    }
+
+}
+
+
 
 void main() {
 
