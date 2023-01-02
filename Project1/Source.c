@@ -5,11 +5,20 @@
 
 
 
+typedef struct Seguidores {
+
+    char nome[70];
+
+} seguidores;
+
 typedef struct dadosParticipante {
     char nome[70];
     int numPraticante;
     int idade;
     int telefone;
+    seguidores seguidores;
+
+
 } Dados;
 
 
@@ -17,6 +26,7 @@ typedef struct atividades {
 
     int numPraticante;
     char data[10];
+    char nomePraticante[50];
     char nomeAtividade[50];
     char hora[10];
     int tempoDeDuracao;
@@ -29,6 +39,7 @@ typedef struct planos {
 
     int numPraticante;
     char dataInicio[20];
+    char nomePraticante[20];
     char dataFinal[20];
     char horaDeInicio[10];
     char horaDeFim[10];
@@ -39,7 +50,10 @@ typedef struct planos {
 }Planos;
 
 //LER DADOS (ficheiro Dados.txt)
-int lerDadosDeParticipante(Dados pessoas[]) {
+
+// Usado
+int lerDadosDeParticipante(Dados pessoas[]) 
+{
     
 
     FILE* fp;
@@ -60,8 +74,9 @@ int lerDadosDeParticipante(Dados pessoas[]) {
 }
 
 
-
-int lerAtividades(Atividades atividades[]) {
+//Usado
+int lerAtividades(Atividades atividades[]) 
+{
 
     FILE* fp1;
     int i;
@@ -83,8 +98,9 @@ int lerAtividades(Atividades atividades[]) {
 }
 
 
-
-int lerPlanos(Planos atividades[]) {
+//Usado
+int lerPlanos(Planos atividades[]) 
+{
 
     FILE* fp2;
     int i;
@@ -107,8 +123,8 @@ int lerPlanos(Planos atividades[]) {
 }
 
 
-
-int ex4()
+//Usado
+int ex4() 
 {
     Dados people[100];
     Atividades activities[100];
@@ -147,8 +163,9 @@ int ex4()
 }
 
 
-
-int ex5() {
+//Usado
+int ex5() 
+{
 
     Dados people[100];
     Atividades activities[100];
@@ -198,8 +215,9 @@ int ex5() {
 }
 
 
-
-Dados Registo() {
+//Usado
+Dados Registo() 
+{
 
     int i = 1;
     Dados P;
@@ -218,8 +236,9 @@ Dados Registo() {
 }
 
 
-
-void CriarNovoUsuario() {
+//Usado
+void CriarNovoUsuario() 
+{
 
 
     Dados pessoas[100];
@@ -258,8 +277,9 @@ void CriarNovoUsuario() {
 }
 
 
-
-Atividades RegistoAtividade() {
+//Usado
+Atividades RegistoAtividade() 
+{
 
     int i = 1;
     Atividades P;
@@ -283,8 +303,9 @@ Atividades RegistoAtividade() {
 }
 
 
-
-void CriarNovaAtividade() {
+//Usado
+void CriarNovaAtividade() 
+{
 
 
     Atividades atividades[100];
@@ -338,8 +359,9 @@ void CriarNovaAtividade() {
 }
 
 
-
-Planos RegistoPlanos() {
+//Usado
+Planos RegistoPlanos() 
+{
 
     int i = 1;
     Planos P;
@@ -367,8 +389,9 @@ Planos RegistoPlanos() {
 }
 
 
-
-void CriarNovoPlano() {
+//Usado
+void CriarNovoPlano() 
+{
 
 
     Planos planos[100];
@@ -422,8 +445,9 @@ void CriarNovoPlano() {
 }
 
 
-
-int ex6() {
+//Usado
+int ex6() 
+{
 
     Dados people[100];
     Atividades activities[100];
@@ -468,8 +492,9 @@ int ex6() {
 }
 
 
-
-Atividades ex7() {
+//Usado
+Atividades ex7() 
+{
 
     Atividades atividades[10];
 
@@ -515,31 +540,29 @@ Atividades ex7() {
 }
 
 
+//Usado
+void ex8() 
+{
 
-void ex8(Atividades atividades[], Planos planos[], Dados pessoas[]) {
+    Atividades atividades[500];
+    Planos planos[500];
+    Dados pessoas[500];
+
     int num = LerDadosDeParticipante(pessoas);
     int num1 = LerAtividades(atividades) + LerPlanos(planos);
     int i, j;
 
 
     for (i = 0; i < num; i++) {
-        printf("%d\t%s\n", pessoas[i].numero, pessoas[i].nome);
+        printf("%d\t%s\n", pessoas[i].numPraticante, pessoas[i].nome);
         for (j = 0; j < num; j++) {
-            printf("%s\n", planos[pessoas[i].numero - 1].nomeAtividade);
+            printf("%s\n", planos[pessoas[i].numPraticante - 1].nomeAtividade);
         }
     }
 }
 
 
-
-typedef struct Seguidores {
-
-    char nome[70];
-
-} seguidores;
-
-
-
+//Usado
 seguidores Seguir() {
 
     Dados dados[100];
@@ -554,14 +577,14 @@ seguidores Seguir() {
 
     for (i = 0; i < 100; i++) {
 
-        if (strcmp(NomePessoa, pessoas[i].nome) == 0) {
+        if (strcmp(NomePessoa, dados[i].nome) == 0) {
 
             for (j = 0; j < 100, j++;) {
 
-                if (!(strcmp(NomePessoa, dados->seguidores[i].nome) == 0)) {
+                if (!(strcmp(NomePessoa, dados.seguidores[i].nome) == 0)) {
 
 
-                    dados->seguidores[i].nome = NomePessoa;
+                    dados.seguidores[i].nome = NomePessoa;
 
                     return NomePessoa;
 
@@ -618,10 +641,10 @@ seguidores Seguir() {
 }
 
 
-
+//Usado
 void ex10() {
 
-
+    Dados dados[100];
     Atividades atividades[100];
 
     char seguidor[100];
@@ -647,24 +670,56 @@ void ex10() {
 }
 
 
+//Usado
+void verSeguidores() {
 
-void main() {
 
+
+
+    FILE* fp8;
+    int i;
+
+    fp8 = fopen("ASeguir.txt", "r");
+    if (fp8 != NULL) {
+
+
+
+
+
+
+        fclose(fp8);
+
+
+    }
+    else {
+
+        printf("Erro ao ler ficheiro");
+    }
+
+
+
+}
+
+
+
+void menu()
+{
     int input;
 
     printf("Bem-vindo. Que operacao deseja realizar?\n");
     printf("            \n");
     printf("1 - Registar um novo usuario.\n");
     printf("2 - Registar uma nova atividade.\n");
-    printf("3 - Ver as atividades planeadas.\n");
+    printf("3 - Registar um novo plano.\n");
     printf("4 - Seguidores.\n");
-    printf("5 - Outros.\n");
-    printf("6 - Historico de informacao introduzida.\n");
+    printf("5 - Ver as atividades planeadas e os usuarios registados.\n");
+    printf("6 - Outros.\n");
+    printf("7 - Historico de informacao introduzida.\n");
     printf("0 - Sair.\n");
 
 
     scanf("%d", &input);
-     if (input == 0)
+    if (input == 0)
     {
         return 0;
     }
@@ -673,46 +728,157 @@ void main() {
     case 1:
         if (input == 1)
         {
-           ;
+            CriarNovoUsuario();
         }
         break;
     case 2:
         if (input == 2)
         {
-           ;
+            CriarNovaAtividade();
         }
         break;
     case 3:
         if (input == 3)
         {
-            ;
+            CriarNovoPlano();
         }
         break;
     case 4:
-        if (input == 3)
+        if (input == 4)
         {
-            ;
+            printf("1 - Ver Seguidores.");
+            printf("2 - Seguir alguem.");
+            printf("0 - Sair.");
+
+            switch (input)
+            {
+            case 1:
+                if (input == 1)
+                {
+                    verSeguidores();
+                }
+                break;
+            case 2:
+                if (input == 2)
+                {
+                    Seguir();
+                }
+            case 3:
+                if (input == 0)
+                {
+                    menu();
+                }
+            default:
+                printf("Enter a valid number");
+                break;
+            }
+
         }
         break;
     case 5:
-        if (input == 3)
+        if (input == 5)
         {
-            ;
+            printf("1 - Ler dados.");
+            printf("2 - Ler atividades.");
+            printf("3 - Ler planos");
+            printf("0 - Sair.");
+
+            switch (input)
+            {
+            case 1:
+                if (input == 1)
+                {
+                    lerDadosDeParticipante(500);
+                }
+                break;
+            case 2:
+                if (input == 2)
+                {
+                    lerAtividades(500);
+                }
+            case 3:
+                if (input == 3)
+                {
+                    lerPlanos(500);
+                }
+            case 4:
+                if (input == 0)
+                {
+                    menu();
+                }
+            default:
+                printf("Enter a valid number");
+                break;
+            }
+            
         }
         break;
     case 6:
-        if (input == 3)
+        if (input == 6)
         {
-            ;
+            printf("1 - .");
+            printf("2 - .");
+            printf("3 - ");
+            printf("0 - Sair.");
+
+            switch (input)
+            {
+            case 1:
+                if (input == 1)
+                {
+                    ex4();
+                }
+                break;
+            case 2:
+                if (input == 2)
+                {
+                    ex5();
+                }
+            case 3:
+                if (input == 3)
+                {
+                    ex6();
+                }
+            case 4:
+                if (input == 4)
+                {
+                    ex7;
+                }
+            case 5:
+                if (input == 5)
+                {
+                    ex8();
+                }
+            case 6:
+                if (input == 6)
+                {
+                    ex10();
+                }
+            case 7:
+                if (input == 0)
+                {
+                    menu();
+                }
+            default:
+                printf("Enter a valid number");
+                break;
+            }
         }
         break;
-
+    case 7:
+        if (input == 7)
 
     default:
         printf("Enter a valid number");
         break;
     }
 
+}
+
+void main()
+{
+    menu();
+ 
 }
 
 
